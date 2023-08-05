@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 @Service
@@ -49,7 +50,7 @@ public class AirportService {
         repositoryObj.addPassengers(id,passenger);
         return "SUCCESS";
     }
-    public Double shortestTimeDuration(City fromCity, City toCity){
+    public double shortestTimeDuration(City fromCity, City toCity){
         List<Flight> flights = repositoryObj.cityFlightHashMap.get(fromCity);
         double timeDuration = Double.MAX_VALUE;
         for (Flight flight:flights){
@@ -133,5 +134,27 @@ public class AirportService {
             revenue+= fare+(i*50);
         }
         return revenue;
+    }
+    public int getNoOfPeopleOn(Date date, String airportName){
+        Airport airport = repositoryObj.airportHashMap.get(airportName);
+        City city = airport.getCity();
+        List<Flight> departure = repositoryObj.cityFlightHashMap.get(city);
+        List<Flight> arrival = repositoryObj.arrivalFlightMap.get(city);
+        int count = 0;
+        for(Flight flight: departure){
+            if(flight.getFlightDate().equals(date)){
+                int id = flight.getFlightId();
+                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
+                count+=noOfPassenger;
+            }
+        }
+        for(Flight flight: arrival){
+            if(flight.getFlightDate().equals(date)){
+                int id = flight.getFlightId();
+                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
+                count+=noOfPassenger;
+            }
+        }
+        return count;
     }
 }

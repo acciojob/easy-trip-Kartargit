@@ -25,6 +25,7 @@ public class AirportRepository {
     public HashMap<Integer,List<Integer>> bookingDb = new HashMap<>();
 
     public HashMap<Integer,Integer> bookingByPassenger = new HashMap<>();
+    public HashMap<City,List<Flight>> arrivalFlightMap = new HashMap<>();
     public void addFlights(Flight flight,Integer id){
 
         flightHashMap.put(id,flight);
@@ -40,6 +41,7 @@ public class AirportRepository {
     public String addBooking(Integer flightId,List<Integer> bookingList){
         Flight flight = flightHashMap.get(flightId);
         City fromCity = flight.getFromCity();
+        City toCity = flight.getToCity();
         List<Flight> flights;
         if(cityFlightHashMap.containsKey(fromCity)){
             flights = cityFlightHashMap.get(fromCity);
@@ -49,6 +51,7 @@ public class AirportRepository {
         }
         flights.add(flight);
         cityFlightHashMap.put(fromCity,flights);
+        arrivalFlightMap.put(toCity,flights);
         bookingDb.put(flightId,bookingList);
 
         return "SUCCESS";
