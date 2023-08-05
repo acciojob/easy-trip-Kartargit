@@ -54,7 +54,7 @@ public class AirportService {
         List<Flight> flights = repositoryObj.cityFlightHashMap.get(fromCity);
         double timeDuration = Double.MAX_VALUE;
         for (Flight flight:flights){
-            if(flight.getToCity().equals(toCity)&&flight.getDuration()<timeDuration){
+            if((flight.getToCity().equals(toCity))&&flight.getDuration()<timeDuration){
                 timeDuration = flight.getDuration();
             }
         }
