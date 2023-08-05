@@ -49,7 +49,7 @@ public class AirportService {
         repositoryObj.addPassengers(id,passenger);
         return "SUCCESS";
     }
-    public double shortestTimeDuration(City fromCity, City toCity){
+    public Double shortestTimeDuration(City fromCity, City toCity){
         List<Flight> flights = repositoryObj.cityFlightHashMap.get(fromCity);
         double timeDuration = Double.MAX_VALUE;
         for (Flight flight:flights){
