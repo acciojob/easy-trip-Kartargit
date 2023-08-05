@@ -57,7 +57,7 @@ public class AirportService {
                 timeDuration = flight.getDuration();
             }
         }
-        if(timeDuration == Double.MAX_VALUE)return -1;
+        if(timeDuration == Double.MAX_VALUE)return Double.parseDouble("-1.0");
         return timeDuration;
     }
     public String ticketBooking(Integer flightId,Integer passengerId){
