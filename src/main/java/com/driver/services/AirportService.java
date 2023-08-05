@@ -1,15 +1,18 @@
-package com.driver.controllers;
+package com.driver.services;
 
 import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
+import com.driver.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+@Service
 public class AirportService {
     @Autowired
     AirportRepository repositoryObj = new AirportRepository();
@@ -46,7 +49,7 @@ public class AirportService {
         repositoryObj.addPassengers(id,passenger);
         return "SUCCESS";
     }
-    public double shortestTimeDuration(City fromCity,City toCity){
+    public double shortestTimeDuration(City fromCity, City toCity){
         List<Flight> flights = repositoryObj.cityFlightHashMap.get(fromCity);
         double timeDuration = Double.MAX_VALUE;
         for (Flight flight:flights){
@@ -81,7 +84,7 @@ public class AirportService {
         }
 
 
-            return "FAILURE";
+        return "FAILURE";
 
     }
     public String cancelTicket(Integer flightId,Integer passengerId){
@@ -93,12 +96,12 @@ public class AirportService {
                 return repositoryObj.addBooking(flightId,bookingList);
             }
         }
-         return "FAILURE";
+        return "FAILURE";
     }
     public int getCountOfBooking(Integer passengerId){
 
-        int n = repositoryObj.bookingByPassenger.get(passengerId);
-        return n;
+
+        return repositoryObj.bookingByPassenger.get(passengerId);
     }
     public String getFromCityAirportName(Integer flightId){
         Flight flight = repositoryObj.flightHashMap.get(flightId);
@@ -116,7 +119,7 @@ public class AirportService {
         int fare = 3000;
         if(repositoryObj.bookingDb.containsKey(flightId)){
             int noOfPassenger = repositoryObj.bookingDb.get(flightId).size();
-             fare += + (noOfPassenger*50);
+            fare +=  (noOfPassenger*50);
         }
         return fare;
     }

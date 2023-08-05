@@ -1,16 +1,18 @@
-package com.driver.controllers;
+package com.driver.repositories;
 
 import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+@Repository
 public class AirportRepository {
-    HashMap<String, Airport> airportHashMap = new HashMap<>();
-    HashMap<Integer, Flight> flightHashMap = new HashMap<>();
+    public HashMap<String, Airport> airportHashMap = new HashMap<>();
+    public HashMap<Integer, Flight> flightHashMap = new HashMap<>();
     public void addAirport(String name,Airport airport){
         airportHashMap.put(name,airport);
     }
@@ -18,11 +20,11 @@ public class AirportRepository {
         return airportHashMap;
     }
 
-    HashMap<City,List<Flight>> cityFlightHashMap = new HashMap<>();
-    HashMap<Integer, Passenger> passengerHashMap = new HashMap<>();
-    HashMap<Integer,List<Integer>> bookingDb = new HashMap<>();
+    public HashMap<City, List<Flight>> cityFlightHashMap = new HashMap<>();
+    public HashMap<Integer, Passenger> passengerHashMap = new HashMap<>();
+    public HashMap<Integer,List<Integer>> bookingDb = new HashMap<>();
 
-    HashMap<Integer,Integer> bookingByPassenger = new HashMap<>();
+    public HashMap<Integer,Integer> bookingByPassenger = new HashMap<>();
     public void addFlights(Flight flight,Integer id){
 
         flightHashMap.put(id,flight);
