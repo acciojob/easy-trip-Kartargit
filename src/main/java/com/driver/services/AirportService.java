@@ -135,26 +135,26 @@ public class AirportService {
         }
         return revenue;
     }
-    public int getNoOfPeopleOn(Date date, String airportName){
-        Airport airport = repositoryObj.airportHashMap.get(airportName);
-        City city = airport.getCity();
-        List<Flight> departure = repositoryObj.cityFlightHashMap.get(city);
-        List<Flight> arrival = repositoryObj.arrivalFlightMap.get(city);
-        int count = 0;
-        for(Flight flight: departure){
-            if(flight.getFlightDate().equals(date)){
-                int id = flight.getFlightId();
-                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
-                count+=noOfPassenger;
-            }
-        }
-        for(Flight flight: arrival){
-            if(flight.getFlightDate().equals(date)){
-                int id = flight.getFlightId();
-                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
-                count+=noOfPassenger;
-            }
-        }
-        return count;
-    }
+//    public int getNoOfPeopleOn(Date date, String airportName){
+//        Airport airport = repositoryObj.airportHashMap.get(airportName);
+//        City city = airport.getCity();
+//        List<Flight> departure = repositoryObj.cityFlightHashMap.get(city);
+//        List<Flight> arrival = repositoryObj.arrivalFlightMap.get(city);
+//        int count = 0;
+//        for(Flight flight: departure){
+//            if(flight.getFlightDate().equals(date)){
+//                int id = flight.getFlightId();
+//                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
+//                count+=noOfPassenger;
+//            }
+//        }
+//        for(Flight flight: arrival){
+//            if(flight.getFlightDate().equals(date)){
+//                int id = flight.getFlightId();
+//                int noOfPassenger = repositoryObj.bookingDb.get(id).size();
+//                count+=noOfPassenger;
+//            }
+//        }
+//        return count;
+//    }
 }

@@ -53,9 +53,9 @@ public class AirportController {
 
         //Calculate the total number of people who have flights on that day on a particular airport
         //This includes both the people who have come for a flight and who have landed on an airport after their flight
-        if(serviceObj.getNoOfPeopleOn(date,airportName)>0){
-            return serviceObj.getNoOfPeopleOn(date,airportName);
-        }
+//        if(serviceObj.getNoOfPeopleOn(date,airportName)>0){
+//            return serviceObj.getNoOfPeopleOn(date,airportName);
+//        }
         return 0;
     }
 
